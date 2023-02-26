@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta codigoSecreto="1243118102" />
+    <title>PWeb - by Fernando Felipe</title>
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
+
+    <style>
+      .pad {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="w3-bar w3-black w3-xlarge">
+      <a
+        href="../u1_exercicio2/index.html"
+        class="w3-bar-item w3-button w3-mobile"
+        >Início</a
+      >
+      <a
+        href="../u1_exercicio2/adicionarPessoa.html"
+        class="w3-bar-item w3-button w3-mobile w3-pale-green"
+        >Adicionar pessoa</a
+      >
+      <a
+        href="../u1_exercicio2/listarPessoas.html"
+        class="w3-bar-item w3-button w3-mobile"
+        >Listar pessoas</a
+      >
+      <a
+        href="../u1_exercicio2/noticias.html"
+        class="w3-bar-item w3-button w3-mobile w3-right"
+        >Notícias</a
+      >
+      <a
+        href="../u1_exercicio2/sobre.html"
+        class="w3-bar-item w3-button w3-mobile w3-right"
+        >Sobre o site</a
+      >
+      <a
+        href="../u1_exercicio2/contato.html"
+        class="w3-bar-item w3-button w3-mobile w3-right"
+        >Contato</a
+      >
+    </div>
+
+    <div class="pad">
+      <form method="get" action="adicionadaComSucesso.html">
+        <h1>Formulário para adicionar pessoas:</h1>
+        <div class="grid">
+          <label for="nome">
+            Seu nomezinho*:
+            <input type="text" id="nome" placeholder="Nome Completo" />
+          </label>
+          <label for="email">
+            e-Mail*:
+            <input type="text" id="email" placeholder="nome@dominio.com" />
+          </label>
+          <label for="date">
+            Data de Nascimento*:
+            <input type="date" id="date" />
+          </label>
+        </div>
+        <fieldset>
+          <legend>Gênero*</legend>
+          <label for="radio-1">
+            <input type="radio" id="radio-1" name="radio" value="radio-1" />
+            Masculino
+          </label>
+          <label for="radio-2">
+            <input type="radio" id="radio-2" name="radio" value="radio-2" />
+            Feminino
+          </label>
+          <label for="radio-3">
+            <input
+              type="radio"
+              id="radio-2"
+              name="radio"
+              value="radio-2"
+              checked
+            />
+            Não informar
+          </label>
+        </fieldset>
+
+        <div class="grid">
+          <input type="submit" value="Adicionar!" />
+          <input type="reset" value="Limpar" />
+        </div>
+        <label>* Campo obrigatório</label>
+      </form>
+    </div>
+  </body>
+</html>
