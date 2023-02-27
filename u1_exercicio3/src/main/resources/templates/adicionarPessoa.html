@@ -48,38 +48,75 @@
     </div>
 
     <div class="pad">
-      <form method="get" action="adicionadaComSucesso.html">
+      <form method="POST" th:action="@{/adicionarPessoa}" th:object="${pessoa}">
         <h1>Formulário para adicionar pessoas:</h1>
         <div class="grid">
           <label for="nome">
             Seu nomezinho*:
-            <input type="text" id="nome" placeholder="Nome Completo" />
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              placeholder="Nome Completo"
+              th:field="*{nome}"
+              required
+            />
           </label>
           <label for="email">
             e-Mail*:
-            <input type="text" id="email" placeholder="nome@dominio.com" />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="nome@dominio.com"
+              th:field="*{email}"
+              required
+            />
           </label>
-          <label for="date">
+          <label for="dataNascimento">
             Data de Nascimento*:
-            <input type="date" id="date" />
+            <input
+              type="date"
+              id="dataNascimento"
+              name="dataNascimento"
+              placeholder="dd/mm/aaaa"
+              th:field="*{dataNascimento}"
+              required
+            />
           </label>
         </div>
         <fieldset>
           <legend>Gênero*</legend>
-          <label for="radio-1">
-            <input type="radio" id="radio-1" name="radio" value="radio-1" />
-            Masculino
-          </label>
-          <label for="radio-2">
-            <input type="radio" id="radio-2" name="radio" value="radio-2" />
-            Feminino
-          </label>
-          <label for="radio-3">
+          <label for="Masculino">
             <input
               type="radio"
-              id="radio-2"
-              name="radio"
-              value="radio-2"
+              id="Masculino"
+              name="genero"
+              value="Masculino"
+              th:field="*{genero}"
+              required
+            />
+            Masculino
+          </label>
+          <label for="Feminino">
+            <input
+              type="radio"
+              id="Feminino"
+              name="genero"
+              value="Feminino"
+              th:field="*{genero}"
+              required
+            />
+            Feminino
+          </label>
+          <label for="Não Informado">
+            <input
+              type="radio"
+              id="Não Informado"
+              name="genero"
+              value="Não Informado"
+              th:field="*{genero}"
+              required
               checked
             />
             Não informar
