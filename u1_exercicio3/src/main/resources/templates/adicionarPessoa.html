@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta codigoSecreto="1243118102" />
     <title>PWeb - by Fernando Felipe</title>
-    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="shortcut icon" th:href="@{/assets/favicon.ico}" />
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
-    />
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
 
     <style>
       .pad {
@@ -24,33 +21,27 @@
 
   <body>
     <div class="w3-bar w3-black w3-xlarge">
+      <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
       <a
-        href="../u1_exercicio2/index.html"
-        class="w3-bar-item w3-button w3-mobile"
-        >Início</a
-      >
-      <a
-        href="../u1_exercicio2/adicionarPessoa.html"
+        href="/adicionarPessoa"
         class="w3-bar-item w3-button w3-mobile w3-pale-green"
         >Adicionar pessoa</a
       >
-      <a
-        href="../u1_exercicio2/listarPessoas.html"
-        class="w3-bar-item w3-button w3-mobile"
+      <a href="/listarPessoa" class="w3-bar-item w3-button w3-mobile"
         >Listar pessoas</a
       >
       <a
-        href="../u1_exercicio2/noticias.html"
+        href="/public/noticias.html"
         class="w3-bar-item w3-button w3-mobile w3-right"
         >Notícias</a
       >
       <a
-        href="../u1_exercicio2/sobre.html"
+        href="/public/sobre.html"
         class="w3-bar-item w3-button w3-mobile w3-right"
         >Sobre o site</a
       >
       <a
-        href="../u1_exercicio2/contato.html"
+        href="/public/contato.html"
         class="w3-bar-item w3-button w3-mobile w3-right"
         >Contato</a
       >
