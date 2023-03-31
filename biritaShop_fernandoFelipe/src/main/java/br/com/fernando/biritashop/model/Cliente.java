@@ -20,19 +20,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "pessoas")
+@Table(name = "clientes")
 public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String nome;
-    private String email;
+    private String nomeCompleto;
+
     private String genero;
 
-    @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate dataNascimento;
+    private String cidade;
+
+    private String cep;
+
+    private String email;
+
+    private String telefone;
 
 }
