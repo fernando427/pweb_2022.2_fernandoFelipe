@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta codigoSecreto="1243118102" />
-    <title>PWeb - by Fernando Felipe</title>
+    <title>BiritaShop - by Fernando Felipe</title>
     <link rel="shortcut icon" th:href="@{/assets/favicon.ico}" />
 
     <link rel="stylesheet" th:href="@{/assets/w3.css}" />
@@ -21,18 +21,44 @@
 
   <body>
     <div class="w3-bar w3-black w3-xlarge">
-      <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
-      <a href="/adicionarPessoa" class="w3-bar-item w3-button w3-mobile"
-        >Adicionar pessoa</a
+      <a href="/" class="w3-bar-item w3-button w3-mobile w3-pale-green"
+        >Início</a
       >
-      <a href="/listarPessoas" class="w3-bar-item w3-button w3-mobile"
-        >Listar pessoas</a
-      >
-      <a
-        href="/public/noticias.html"
-        class="w3-bar-item w3-button w3-mobile w3-right"
-        >Notícias</a
-      >
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Cliente</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="/adicionarCliente" class="w3-bar-item w3-button"
+            >Adicionar Cliente</a
+          >
+          <a href="/listarCliente" class="w3-bar-item w3-button"
+            >Listar Cliente</a
+          >
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Dependente</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="#" class="w3-bar-item w3-button">Adicionar Dependente</a>
+          <a href="#" class="w3-bar-item w3-button">Editar Dependente</a>
+          <a href="#" class="w3-bar-item w3-button">Listar Dependente</a>
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Pedido</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="#" class="w3-bar-item w3-button">Adicionar Pedido</a>
+          <a href="#" class="w3-bar-item w3-button">Editar Pedido</a>
+          <a href="#" class="w3-bar-item w3-button">Listar Pedido</a>
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Produto</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="#" class="w3-bar-item w3-button">Adicionar Produto</a>
+          <a href="#" class="w3-bar-item w3-button">Editar Produto</a>
+          <a href="#" class="w3-bar-item w3-button">Listar Produto</a>
+        </div>
+      </div>
       <a
         href="/public/sobre.html"
         class="w3-bar-item w3-button w3-mobile w3-right"
@@ -48,19 +74,19 @@
     <div class="pad">
       <form
         method="POST"
-        th:action="@{/editar/{id}(id=${pessoa.id})}"
-        th:object="${pessoa}"
+        th:action="@{/editar/{id}(id=${cliente.id})}"
+        th:object="${cliente}"
       >
-        <h1>Formulário para editar pessoas:</h1>
+        <h1>Formulário para editar clientes:</h1>
         <div class="grid">
           <label for="nome">
-            Seu nomezinho*:
+            Seu nome*:
             <input
               type="text"
               id="nome"
               name="nome"
               placeholder="Nome Completo"
-              th:field="*{nome}"
+              th:field="*{nomecompleto}"
               required
             />
           </label>
@@ -75,14 +101,36 @@
               required
             />
           </label>
-          <label for="dataNascimento">
-            Data de Nascimento*:
+          <label for="cidade">
+            Cidade*:
             <input
-              type="date"
-              id="dataNascimento"
-              name="dataNascimento"
-              placeholder="dd/mm/aaaa"
-              th:field="*{dataNascimento}"
+              type="cidade"
+              id="cidade"
+              name="cidade"
+              placeholder="Cidade"
+              th:field="*{cidade}"
+              required
+            />
+          </label>
+          <label for="cep">
+            CEP*:
+            <input
+              type="cep"
+              id="cep"
+              name="cep"
+              placeholder="CEP"
+              th:field="*{cep}"
+              required
+            />
+          </label>
+          <label for="telefone">
+            Telefone*:
+            <input
+              type="telefone"
+              id="telefone"
+              name="telefone"
+              placeholder="Telefone"
+              th:field="*{telefone}"
               required
             />
           </label>

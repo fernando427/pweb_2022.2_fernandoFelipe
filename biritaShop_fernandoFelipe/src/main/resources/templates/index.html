@@ -8,11 +8,8 @@
     <title>BiritaShop - by Fernando Felipe</title>
     <link rel="shortcut icon" th:href="@{/assets/favicon.ico}" />
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@picocss/pico@1.*/css/pico.fluid.classless.min.css"
-    />
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
 
     <style>
       .pad {
@@ -30,13 +27,10 @@
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-black">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
-          <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
+          <a href="/adicionarCliente" class="w3-bar-item w3-button"
             >Adicionar Cliente</a
           >
-          <a href="/cliente/editarCliente" class="w3-bar-item w3-button"
-            >Editar Cliente</a
-          >
-          <a href="/cliente/listarCliente" class="w3-bar-item w3-button"
+          <a href="/listarCliente" class="w3-bar-item w3-button"
             >Listar Cliente</a
           >
         </div>

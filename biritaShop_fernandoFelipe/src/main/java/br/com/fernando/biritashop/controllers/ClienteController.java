@@ -7,14 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.fernando.biritashop.model.Cliente;
 import br.com.fernando.biritashop.repositories.ClienteRepository;
 
 @Controller
-@RequestMapping("/")
 public class ClienteController {
 
     @Autowired
@@ -24,22 +22,17 @@ public class ClienteController {
         this.clienteRepo = clienteRepo;
     }
 
-    @GetMapping
-    public String index() {
-        return "index.html";
-    }
-
     @GetMapping("/listarCliente")
-    public ModelAndView listarClientes() {
+    public ModelAndView listarCliente() {
         List<Cliente> todosOsClientes = clienteRepo.findAll();
-        ModelAndView modelAndView = new ModelAndView("listarClientes");
+        ModelAndView modelAndView = new ModelAndView("/cliente/listarCliente");
         modelAndView.addObject("todosOsClientes", todosOsClientes);
         return modelAndView;
     }
 
     @GetMapping("/adicionarCliente")
     public ModelAndView formularioAdicionarClientes() {
-        ModelAndView modelAndView = new ModelAndView("adicionarCliente");
+        ModelAndView modelAndView = new ModelAndView("/cliente/adicionarCliente");
         modelAndView.addObject(new Cliente());
         return modelAndView;
     }
@@ -47,7 +40,7 @@ public class ClienteController {
     @PostMapping("/adicionarCliente")
     public String adicionarCliente(Cliente p) {
         this.clienteRepo.save(p);
-        return "redirect:/adicionarCliente";
+        return "redirect:/listarCliente";
     }
 
     @GetMapping("/remover/{id}")
@@ -55,21 +48,21 @@ public class ClienteController {
         Cliente aRemover = clienteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID inválido=" + id));
         clienteRepo.delete(aRemover);
-        return new ModelAndView("redirect:/listarClientes");
+        return new ModelAndView("redirect:/listarCliente");
     }
 
     @GetMapping("/editar/{id}")
-    public ModelAndView formularioEditarPessoas(@PathVariable("id") long id) {
+    public ModelAndView formularioEditarClientes(@PathVariable("id") long id) {
         Cliente aEditar = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido=" + id));
-        ModelAndView modelAndView = new ModelAndView("editarPessoa");
+        ModelAndView modelAndView = new ModelAndView("/cliente/editarCliente");
         modelAndView.addObject(aEditar);
         return modelAndView;
     }
 
     @PostMapping("/editar/{id}")
-    public String editarPessoa(@PathVariable("id") long id, Cliente p) {
+    public String editarCliente(@PathVariable("id") long id, Cliente p) {
         this.clienteRepo.save(p);
-        return "redirect:/listarPessoas";
+        return "redirect:/listarCliente";
     }
 
 }
