@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta codigoSecreto="1243118102" />
-    <title>PWeb - by Fernando Felipe</title>
+    <title>BiritaShop - by Fernando Felipe</title>
     <link rel="shortcut icon" th:href="@{/assets/favicon.ico}" />
 
     <link rel="stylesheet" th:href="@{/assets/w3.css}" />
@@ -22,19 +22,44 @@
   <body>
     <div class="w3-bar w3-black w3-xlarge">
       <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
-      <a href="/adicionarPessoa" class="w3-bar-item w3-button w3-mobile"
-        >Adicionar pessoa</a
-      >
-      <a
-        href="/listarPessoas"
-        class="w3-bar-item w3-button w3-mobile w3-pale-green"
-        >Listar pessoas</a
-      >
-      <a
-        href="/public/noticias.html"
-        class="w3-bar-item w3-button w3-mobile w3-right"
-        >Notícias</a
-      >
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black w3-pale-green">Cliente</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
+            >Adicionar Cliente</a
+          >
+          <a href="/cliente/listarCliente" class="w3-bar-item w3-button"
+            >Listar Cliente</a
+          >
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Dependente</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="#" class="w3-bar-item w3-button">Adicionar Dependente</a>
+          <a href="#" class="w3-bar-item w3-button">Editar Dependente</a>
+          <a href="#" class="w3-bar-item w3-button">Listar Dependente</a>
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Pedido</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="#" class="w3-bar-item w3-button">Adicionar Pedido</a>
+          <a href="#" class="w3-bar-item w3-button">Editar Pedido</a>
+          <a href="#" class="w3-bar-item w3-button">Listar Pedido</a>
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black w3-pale-green">Produto</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="/produto/adicionarProduto" class="w3-bar-item w3-button"
+            >Adicionar Produto</a
+          >
+          <a href="/produto/listarProduto" class="w3-bar-item w3-button"
+            >Listar Produto</a
+          >
+        </div>
+      </div>
       <a
         href="/public/sobre.html"
         class="w3-bar-item w3-button w3-mobile w3-right"
@@ -48,36 +73,37 @@
     </div>
 
     <div class="pad">
-      <h1 align="middle">Lista de pessoas</h1>
+      <h1 align="middle">Lista de produtos</h1>
       <table role="grid">
         <thead>
           <tr>
             <th scope="col">id</th>
-            <th scope="col">Nome Completo</th>
-            <th scope="col">e-Mail</th>
-            <th scope="col">Data de Nascimento</th>
+            <th scope="col">Nome do Produto</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Embalagem</th>
+            <th scope="col">Preço da Compra</th>
+            <th scope="col">Preço da Venda</th>
             <th scope="col">Gênero</th>
+            <th scope="col">Data do Produto</th>
             <th scope="col">Editar</th>
             <th scope="col">Remover</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="umaPessoa: ${todasAsPessoas}">
-            <td th:text="${umaPessoa.id}"></td>
-            <td th:text="${umaPessoa.nome}"></td>
-            <td>
-              <a
-                th:href="'mailto:'+${umaPessoa.id}"
-                th:text="${umaPessoa.email}"
-              ></a>
-            </td>
+          <tr th:each="umProduto: ${todosOsProdutos}">
+            <td th:text="${umProduto.id}"></td>
+            <td th:text="${umProduto.nomeProduto}"></td>
+            <td th:text="${umProduto.volume}"></td>
+            <td th:text="${umProduto.embalagem}"></td>
+            <td th:text="${umProduto.precoCompra}"></td>
+            <td th:text="${umProduto.precoVenda}"></td>
+            <td th:text="${umProduto.genero}"></td>
             <td
-              th:text="${#temporals.format(umaPessoa.dataNascimento, 'dd/MM/yyyy')}"
+              th:text="${#temporals.format(umProduto.dataProduto, 'dd/MM/yyyy')}"
             ></td>
-            <td th:text="${umaPessoa.genero}"></td>
-            <td><a th:href="@{/editar/{id}(id=${umaPessoa.id})}">Editar</a></td>
+            <td><a th:href="@{editar/{id}(id=${umProduto.id})}">Editar</a></td>
             <td>
-              <a th:href="@{/remover/{id}(id=${umaPessoa.id})}">Remover</a>
+              <a th:href="@{remover/{id}(id=${umProduto.id})}">Remover</a>
             </td>
           </tr>
         </tbody>

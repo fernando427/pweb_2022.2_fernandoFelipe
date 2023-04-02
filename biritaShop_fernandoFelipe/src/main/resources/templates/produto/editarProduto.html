@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta codigoSecreto="1243118102" />
-    <title>PWeb - by Fernando Felipe</title>
+    <title>BiritaShop - by Fernando Felipe</title>
     <link rel="shortcut icon" th:href="@{/assets/favicon.ico}" />
 
     <link rel="stylesheet" th:href="@{/assets/w3.css}" />
@@ -22,17 +22,44 @@
   <body>
     <div class="w3-bar w3-black w3-xlarge">
       <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
-      <a href="/adicionarPessoa" class="w3-bar-item w3-button w3-mobile"
-        >Adicionar pessoa</a
-      >
-      <a href="/listarPessoas" class="w3-bar-item w3-button w3-mobile"
-        >Listar pessoas</a
-      >
-      <a
-        href="/public/noticias.html"
-        class="w3-bar-item w3-button w3-mobile w3-right"
-        >Notícias</a
-      >
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black w3-pale-green">Cliente</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
+            >Adicionar Cliente</a
+          >
+          <a href="/cliente/listarCliente" class="w3-bar-item w3-button"
+            >Listar Cliente</a
+          >
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Dependente</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="#" class="w3-bar-item w3-button">Adicionar Dependente</a>
+          <a href="#" class="w3-bar-item w3-button">Editar Dependente</a>
+          <a href="#" class="w3-bar-item w3-button">Listar Dependente</a>
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Pedido</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="#" class="w3-bar-item w3-button">Adicionar Pedido</a>
+          <a href="#" class="w3-bar-item w3-button">Editar Pedido</a>
+          <a href="#" class="w3-bar-item w3-button">Listar Pedido</a>
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black w3-pale-green">Produto</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="/produto/adicionarProduto" class="w3-bar-item w3-button"
+            >Adicionar Produto</a
+          >
+          <a href="/produto/listarProduto" class="w3-bar-item w3-button"
+            >Listar Produto</a
+          >
+        </div>
+      </div>
       <a
         href="/public/sobre.html"
         class="w3-bar-item w3-button w3-mobile w3-right"
@@ -51,77 +78,99 @@
         th:action="@{/editar/{id}(id=${pessoa.id})}"
         th:object="${pessoa}"
       >
-        <h1>Formulário para editar pessoas:</h1>
+        <h1>Formulário para editar produtos:</h1>
         <div class="grid">
-          <label for="nome">
-            Seu nomezinho*:
+          <label for="nomeProduto">
+            Nome do Produto*:
             <input
               type="text"
-              id="nome"
-              name="nome"
-              placeholder="Nome Completo"
-              th:field="*{nome}"
+              id="nomeProduto"
+              name="nomeProduto"
+              placeholder="Nome do Produto"
+              th:field="*{nomeProduto}"
               required
             />
           </label>
-          <label for="email">
-            e-Mail*:
+          <label for="marca">
+            Marca*:
             <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="nome@dominio.com"
-              th:field="*{email}"
+              type="marca"
+              id="marca"
+              name="marca"
+              placeholder="Marca"
+              th:field="*{marca}"
               required
             />
           </label>
-          <label for="dataNascimento">
-            Data de Nascimento*:
+          <label for="volume">
+            Volume*:
             <input
-              type="date"
-              id="dataNascimento"
-              name="dataNascimento"
-              placeholder="dd/mm/aaaa"
-              th:field="*{dataNascimento}"
+              type="volume"
+              id="volume"
+              name="volume"
+              placeholder="Volume"
+              th:field="*{volume}"
+              required
+            />
+          </label>
+          <label for="precoVenda">
+            Preço da Venda*:
+            <input
+              type="precoVenda"
+              id="precoVenda"
+              name="precoVenda"
+              placeholder="Preço da Venda"
+              th:field="*{precoVenda}"
+              required
+            />
+          </label>
+          <label for="precoCompra">
+            Preço da Compra*:
+            <input
+              type="precoCompra"
+              id="precoCompra"
+              name="precoCompra"
+              placeholder="Preço da Compra"
+              th:field="*{precoCompra}"
               required
             />
           </label>
         </div>
         <fieldset>
-          <legend>Gênero*</legend>
-          <label for="Masculino">
+          <legend>Embalagem*</legend>
+          <label for="plastico">
             <input
               type="radio"
-              id="Masculino"
-              name="genero"
-              value="Masculino"
-              th:field="*{genero}"
+              id="plastico"
+              name="embalagem"
+              value="plastico"
+              th:field="*{embalagem}"
               required
             />
-            Masculino
+            Plástico
           </label>
-          <label for="Feminino">
+          <label for="metal">
             <input
               type="radio"
-              id="Feminino"
-              name="genero"
-              value="Feminino"
-              th:field="*{genero}"
+              id="metal"
+              name="embalagem"
+              value="metal"
+              th:field="*{embalagem}"
               required
             />
-            Feminino
+            Metal
           </label>
-          <label for="Não Informado">
+          <label for="vidro">
             <input
               type="radio"
-              id="Não Informado"
-              name="genero"
-              value="Não Informado"
-              th:field="*{genero}"
+              id="vidro"
+              name="embalagem"
+              value="vidro"
+              th:field="*{embalagem}"
               required
               checked
             />
-            Não informar
+            Vidro
           </label>
         </fieldset>
 

@@ -21,16 +21,14 @@
 
   <body>
     <div class="w3-bar w3-black w3-xlarge">
-      <a href="/" class="w3-bar-item w3-button w3-mobile w3-pale-green"
-        >Início</a
-      >
+      <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black">Cliente</button>
+        <button class="w3-button w3-black w3-pale-green">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
-          <a href="/adicionarCliente" class="w3-bar-item w3-button"
+          <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
             >Adicionar Cliente</a
           >
-          <a href="/listarCliente" class="w3-bar-item w3-button"
+          <a href="/cliente/listarCliente" class="w3-bar-item w3-button"
             >Listar Cliente</a
           >
         </div>
@@ -54,9 +52,12 @@
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-black">Produto</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
-          <a href="#" class="w3-bar-item w3-button">Adicionar Produto</a>
-          <a href="#" class="w3-bar-item w3-button">Editar Produto</a>
-          <a href="#" class="w3-bar-item w3-button">Listar Produto</a>
+          <a href="/produto/adicionarProduto" class="w3-bar-item w3-button"
+            >Adicionar Produto</a
+          >
+          <a href="/produto/listarProduto" class="w3-bar-item w3-button"
+            >Listar Produto</a
+          >
         </div>
       </div>
       <a
@@ -86,7 +87,7 @@
               id="nome"
               name="nome"
               placeholder="Nome Completo"
-              th:field="*{nomecompleto}"
+              th:field="*{nomeCompleto}"
               required
             />
           </label>

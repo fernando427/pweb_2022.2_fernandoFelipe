@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.fernando.biritashop.model.Cliente;
 import br.com.fernando.biritashop.repositories.ClienteRepository;
 
 @Controller
+@RequestMapping("/cliente")
 public class ClienteController {
 
     @Autowired
@@ -40,7 +42,7 @@ public class ClienteController {
     @PostMapping("/adicionarCliente")
     public String adicionarCliente(Cliente p) {
         this.clienteRepo.save(p);
-        return "redirect:/listarCliente";
+        return "redirect:/cliente/listarCliente";
     }
 
     @GetMapping("/remover/{id}")
@@ -48,12 +50,13 @@ public class ClienteController {
         Cliente aRemover = clienteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID inválido=" + id));
         clienteRepo.delete(aRemover);
-        return new ModelAndView("redirect:/listarCliente");
+        return new ModelAndView("redirect:/cliente/listarCliente");
     }
 
     @GetMapping("/editar/{id}")
     public ModelAndView formularioEditarClientes(@PathVariable("id") long id) {
-        Cliente aEditar = clienteRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido=" + id));
+        Cliente aEditar = clienteRepo.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("ID inválido=" + id));
         ModelAndView modelAndView = new ModelAndView("/cliente/editarCliente");
         modelAndView.addObject(aEditar);
         return modelAndView;
@@ -62,7 +65,7 @@ public class ClienteController {
     @PostMapping("/editar/{id}")
     public String editarCliente(@PathVariable("id") long id, Cliente p) {
         this.clienteRepo.save(p);
-        return "redirect:/listarCliente";
+        return "redirect:/cliente/listarCliente";
     }
 
 }
