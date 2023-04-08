@@ -1,6 +1,7 @@
 package br.com.fernando.biritashop.controllers;
 
 import java.util.List;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +42,7 @@ public class ProdutoController {
 
     @PostMapping("/adicionarProduto")
     public String adicionarProduto(Produto p) {
+        p.setDataProduto(LocalDate.now());
         this.produtoRepo.save(p);
         return "redirect:/produto/listarProduto";
     }
@@ -64,6 +66,7 @@ public class ProdutoController {
 
     @PostMapping("/editar/{id}")
     public String editarProduto(@PathVariable("id") long id, Produto p) {
+        p.setDataProduto(LocalDate.now());
         this.produtoRepo.save(p);
         return "redirect:/produto/listarProduto";
     }

@@ -21,7 +21,7 @@
 
   <body>
     <div class="w3-bar w3-black w3-xlarge">
-      <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
+      <a href="/" class="w3-bar-item w3-button w3-mobile">BiritaShop</a>
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-black w3-pale-green">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
@@ -75,7 +75,7 @@
     <div class="pad">
       <form
         method="POST"
-        th:action="@{/editar/{id}(id=${cliente.id})}"
+        th:action="@{/cliente/editar/{id}(id=${cliente.id})}"
         th:object="${cliente}"
       >
         <h1>Formulário para editar clientes:</h1>
@@ -94,7 +94,7 @@
           <label for="email">
             e-Mail*:
             <input
-              type="email"
+              type="text"
               id="email"
               name="email"
               placeholder="nome@dominio.com"
@@ -105,7 +105,7 @@
           <label for="cidade">
             Cidade*:
             <input
-              type="cidade"
+              type="text"
               id="cidade"
               name="cidade"
               placeholder="Cidade"
@@ -116,7 +116,7 @@
           <label for="cep">
             CEP*:
             <input
-              type="cep"
+              type="text"
               id="cep"
               name="cep"
               placeholder="CEP"
@@ -127,7 +127,7 @@
           <label for="telefone">
             Telefone*:
             <input
-              type="telefone"
+              type="text"
               id="telefone"
               name="telefone"
               placeholder="Telefone"

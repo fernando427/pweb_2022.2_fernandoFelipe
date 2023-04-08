@@ -21,9 +21,9 @@
 
   <body>
     <div class="w3-bar w3-black w3-xlarge">
-      <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
+      <a href="/" class="w3-bar-item w3-button w3-mobile">BiritaShop</a>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black w3-pale-green">Cliente</button>
+        <button class="w3-button w3-black">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
             >Adicionar Cliente</a
@@ -75,8 +75,8 @@
     <div class="pad">
       <form
         method="POST"
-        th:action="@{/editar/{id}(id=${pessoa.id})}"
-        th:object="${pessoa}"
+        th:action="@{/produto/editar/{id}(id=${produto.id})}"
+        th:object="${produto}"
       >
         <h1>Formulário para editar produtos:</h1>
         <div class="grid">
@@ -94,7 +94,7 @@
           <label for="marca">
             Marca*:
             <input
-              type="marca"
+              type="text"
               id="marca"
               name="marca"
               placeholder="Marca"
@@ -105,10 +105,10 @@
           <label for="volume">
             Volume*:
             <input
-              type="volume"
+              type="text"
               id="volume"
               name="volume"
-              placeholder="Volume"
+              placeholder="ml"
               th:field="*{volume}"
               required
             />
@@ -116,10 +116,10 @@
           <label for="precoVenda">
             Preço da Venda*:
             <input
-              type="precoVenda"
+              type="text"
               id="precoVenda"
               name="precoVenda"
-              placeholder="Preço da Venda"
+              placeholder="R$"
               th:field="*{precoVenda}"
               required
             />
@@ -127,10 +127,10 @@
           <label for="precoCompra">
             Preço da Compra*:
             <input
-              type="precoCompra"
+              type="text"
               id="precoCompra"
               name="precoCompra"
-              placeholder="Preço da Compra"
+              placeholder="R$"
               th:field="*{precoCompra}"
               required
             />

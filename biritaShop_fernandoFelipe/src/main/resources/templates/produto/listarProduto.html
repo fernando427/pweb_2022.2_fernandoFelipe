@@ -21,9 +21,9 @@
 
   <body>
     <div class="w3-bar w3-black w3-xlarge">
-      <a href="/" class="w3-bar-item w3-button w3-mobile">Início</a>
+      <a href="/" class="w3-bar-item w3-button w3-mobile">BiritaShop</a>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black w3-pale-green">Cliente</button>
+        <button class="w3-button w3-black">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
             >Adicionar Cliente</a
@@ -83,7 +83,6 @@
             <th scope="col">Embalagem</th>
             <th scope="col">Preço da Compra</th>
             <th scope="col">Preço da Venda</th>
-            <th scope="col">Gênero</th>
             <th scope="col">Data do Produto</th>
             <th scope="col">Editar</th>
             <th scope="col">Remover</th>
@@ -97,7 +96,6 @@
             <td th:text="${umProduto.embalagem}"></td>
             <td th:text="${umProduto.precoCompra}"></td>
             <td th:text="${umProduto.precoVenda}"></td>
-            <td th:text="${umProduto.genero}"></td>
             <td
               th:text="${#temporals.format(umProduto.dataProduto, 'dd/MM/yyyy')}"
             ></td>
