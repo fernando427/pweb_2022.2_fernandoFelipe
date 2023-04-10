@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta codigoSecreto="1243118102" />
     <title>BiritaShop - by Fernando Felipe</title>
-    <link rel="shortcut icon" th:href="@{/assets/favicon.ico}" />
+    <link rel="shortcut icon" th:href="@{/assets/favicon.icon}" />
 
     <link rel="stylesheet" th:href="@{/assets/w3.css}" />
     <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
@@ -23,7 +23,7 @@
     <div class="w3-bar w3-black w3-xlarge">
       <a href="/" class="w3-bar-item w3-button w3-mobile">BiritaShop</a>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black w3-pale-green">Cliente</button>
+        <button class="w3-button w3-black">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
             >Adicionar Cliente</a
@@ -78,38 +78,51 @@
     </div>
 
     <div class="pad">
-      <h1 align="middle">Lista de clientes</h1>
+      <h1 align="middle"><b>Seleção de clientes</b></h1>
+      <form th:object="${cliente}" method="GET">
+        <div class="form-group">
+          <label for="dropdown">Selecione um cliente</label>
+          <select id="dropdown" name="option" class="form-control">
+            <option value="">--Select--</option>
+            <option
+              th:each="umCliente: ${todosOsClientes}"
+              th:value="${umCliente.id}"
+              th:text="${umCliente.nomeCompleto}"
+            ></option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Buscar dependentes
+        </button>
+      </form>
+    </div>
+
+    <div class="pad">
+      <h1 align="middle"><b>Lista de dependentes</b></h1>
       <table role="grid">
         <thead>
           <tr>
             <th scope="col">id</th>
-            <th scope="col">Nome Completo</th>
+            <th scope="col">Nome do Dependente</th>
             <th scope="col">Gênero</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">Cep</th>
-            <th scope="col">e-Mail</th>
-            <th scope="col">Telefone</th>
+            <th scope="col">Data de Nascimento</th>
             <th scope="col">Editar</th>
             <th scope="col">Remover</th>
           </tr>
         </thead>
         <tbody>
-          <tr th:each="umCliente: ${todosOsClientes}">
-            <td th:text="${umCliente.id}"></td>
-            <td th:text="${umCliente.nomeCompleto}"></td>
-            <td th:text="${umCliente.genero}"></td>
-            <td th:text="${umCliente.cidade}"></td>
-            <td th:text="${umCliente.cep}"></td>
+          <tr th:each="umDependente: ${todosOsDependentes}">
+            <td th:text="${umDependente.id}"></td>
+            <td th:text="${umDependente.nomeDependente}"></td>
+            <td th:text="${umDependente.generoDependente}"></td>
+            <td
+              th:text="${#temporals.format(umaDependente.dataNascimento, 'dd/MM/yyyy')}"
+            ></td>
             <td>
-              <a
-                th:href="'mailto:'+${umCliente.id}"
-                th:text="${umCliente.email}"
-              ></a>
+              <a th:href="@{editar/{id}(id=${umDependente.id})}">Editar</a>
             </td>
-            <td th:text="${umCliente.telefone}"></td>
-            <td><a th:href="@{editar/{id}(id=${umCliente.id})}">Editar</a></td>
             <td>
-              <a th:href="@{remover/{id}(id=${umCliente.id})}">Remover</a>
+              <a th:href="@{remover/{id}(id=${umDependente.id})}">Remover</a>
             </td>
           </tr>
         </tbody>

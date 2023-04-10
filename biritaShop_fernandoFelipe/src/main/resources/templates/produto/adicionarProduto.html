@@ -36,9 +36,14 @@
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-black">Dependente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
-          <a href="#" class="w3-bar-item w3-button">Adicionar Dependente</a>
-          <a href="#" class="w3-bar-item w3-button">Editar Dependente</a>
-          <a href="#" class="w3-bar-item w3-button">Listar Dependente</a>
+          <a
+            href="/dependente/adicionarDependente"
+            class="w3-bar-item w3-button"
+            >Adicionar Dependente</a
+          >
+          <a href="/dependente/listarDependente" class="w3-bar-item w3-button"
+            >Listar Dependente</a
+          >
         </div>
       </div>
       <div class="w3-dropdown-hover">
@@ -94,7 +99,7 @@
           <label for="marca">
             Marca*:
             <input
-              type="marca"
+              type="text"
               id="marca"
               name="marca"
               placeholder="Marca"
@@ -103,35 +108,44 @@
             />
           </label>
           <label for="volume">
-            Volume*:
+            Volume(mL)*:
             <input
-              type="volume"
+              type="text"
               id="volume"
               name="volume"
               placeholder="ml"
               th:field="*{volume}"
+              step="0.01"
+              min="0.01"
+              max="9999999999.99"
               required
             />
           </label>
           <label for="precoVenda">
             Preço da Venda*:
             <input
-              type="precoVenda"
+              type="text"
               id="precoVenda"
               name="precoVenda"
               placeholder="R$"
               th:field="*{precoVenda}"
+              step="0.01"
+              min="0.01"
+              max="9999999999.99"
               required
             />
           </label>
           <label for="precoCompra">
             Preço da Compra*:
             <input
-              type="precoCompra"
+              type="number"
               id="precoCompra"
               name="precoCompra"
               placeholder="R$"
               th:field="*{precoCompra}"
+              step="0.01"
+              min="0.01"
+              max="9999999999.99"
               required
             />
           </label>
@@ -181,5 +195,6 @@
         <label>* Campo obrigatório</label>
       </form>
     </div>
+    <script src="/public/validateForm.js"></script>
   </body>
 </html>

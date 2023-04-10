@@ -27,7 +27,7 @@ public class ProdutoController {
 
     @GetMapping("/listarProduto")
     public ModelAndView listarProduto() {
-        List<Produto> todosOsProdutos = produtoRepo.findAll();
+        List<Produto> todosOsProdutos = this.produtoRepo.findAll();
         ModelAndView modelAndView = new ModelAndView("/produto/listarProduto");
         modelAndView.addObject("todosOsProdutos", todosOsProdutos);
         return modelAndView;
@@ -49,7 +49,7 @@ public class ProdutoController {
 
     @GetMapping("/remover/{id}")
     public ModelAndView removerProduto(@PathVariable("id") long id) {
-        Produto aRemover = produtoRepo.findById(id)
+        Produto aRemover = this.produtoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID inválido=" + id));
         produtoRepo.delete(aRemover);
         return new ModelAndView("redirect:/produto/listarProduto");
@@ -57,7 +57,7 @@ public class ProdutoController {
 
     @GetMapping("/editar/{id}")
     public ModelAndView formularioEditarProdutos(@PathVariable("id") long id) {
-        Produto aEditar = produtoRepo.findById(id)
+        Produto aEditar = this.produtoRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID inválido=" + id));
         ModelAndView modelAndView = new ModelAndView("/produto/editarProduto");
         modelAndView.addObject(aEditar);

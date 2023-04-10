@@ -36,9 +36,14 @@
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-black">Dependente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
-          <a href="#" class="w3-bar-item w3-button">Adicionar Dependente</a>
-          <a href="#" class="w3-bar-item w3-button">Editar Dependente</a>
-          <a href="#" class="w3-bar-item w3-button">Listar Dependente</a>
+          <a
+            href="/dependente/adicionarDependente"
+            class="w3-bar-item w3-button"
+            >Adicionar Dependente</a
+          >
+          <a href="/dependente/listarDependente" class="w3-bar-item w3-button"
+            >Listar Dependente</a
+          >
         </div>
       </div>
       <div class="w3-dropdown-hover">
@@ -94,7 +99,7 @@
           <label for="email">
             e-Mail*:
             <input
-              type="email"
+              type="text"
               id="email"
               name="email"
               placeholder="nome@dominio.com"
@@ -105,7 +110,7 @@
           <label for="cidade">
             Cidade*:
             <input
-              type="cidade"
+              type="text"
               id="cidade"
               name="cidade"
               placeholder="Cidade"
@@ -116,7 +121,7 @@
           <label for="cep">
             CEP*:
             <input
-              type="cep"
+              type="text"
               id="cep"
               name="cep"
               placeholder="CEP"
@@ -127,7 +132,7 @@
           <label for="telefone">
             Telefone*:
             <input
-              type="telefone"
+              type="text"
               id="telefone"
               name="telefone"
               placeholder="Telefone"

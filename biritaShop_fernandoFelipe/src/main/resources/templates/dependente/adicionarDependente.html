@@ -23,7 +23,7 @@
     <div class="w3-bar w3-black w3-xlarge">
       <a href="/" class="w3-bar-item w3-button w3-mobile">BiritaShop</a>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black w3-pale-green">Cliente</button>
+        <button class="w3-button w3-black">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
             >Adicionar Cliente</a
@@ -78,42 +78,91 @@
     </div>
 
     <div class="pad">
-      <h1 align="middle">Lista de clientes</h1>
-      <table role="grid">
-        <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">Nome Completo</th>
-            <th scope="col">Gênero</th>
-            <th scope="col">Cidade</th>
-            <th scope="col">Cep</th>
-            <th scope="col">e-Mail</th>
-            <th scope="col">Telefone</th>
-            <th scope="col">Editar</th>
-            <th scope="col">Remover</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr th:each="umCliente: ${todosOsClientes}">
-            <td th:text="${umCliente.id}"></td>
-            <td th:text="${umCliente.nomeCompleto}"></td>
-            <td th:text="${umCliente.genero}"></td>
-            <td th:text="${umCliente.cidade}"></td>
-            <td th:text="${umCliente.cep}"></td>
-            <td>
-              <a
-                th:href="'mailto:'+${umCliente.id}"
-                th:text="${umCliente.email}"
-              ></a>
-            </td>
-            <td th:text="${umCliente.telefone}"></td>
-            <td><a th:href="@{editar/{id}(id=${umCliente.id})}">Editar</a></td>
-            <td>
-              <a th:href="@{remover/{id}(id=${umCliente.id})}">Remover</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <h1 align="middle">Adicionar dependente</h1>
+      <form
+        method="POST"
+        th:action="@{/dependente/adicionarDependente}"
+        th:object="${dependente}"
+      >
+        <div class="form-group">
+          <label for="dropdown">Selecione um cliente</label>
+          <select id="dropdown" name="umCliente" class="form-control">
+            <option value="">--Select--</option>
+            <option
+              th:each="umCliente: ${todosOsClientes}"
+              th:value="${umCliente.id}"
+              th:text="${umCliente.nomeCompleto}"
+            ></option>
+          </select>
+        </div>
+        <div class="grid">
+          <label for="nomeDependente">
+            Nome dependente*:
+            <input
+              type="text"
+              id="nomeDependente"
+              name="nomeDependente"
+              placeholder="Nome Completo"
+              th:field="*{nomeDependente}"
+              required
+            />
+          </label>
+          <label for="dataNascimento">
+            Data de Nascimento*:
+            <input
+              type="date"
+              id="dataNascimento"
+              name="dataNascimento"
+              placeholder="dd/mm/aaaa"
+              th:field="*{dataNascimento}"
+              required
+            />
+          </label>
+        </div>
+        <fieldset>
+          <legend>Gênero*</legend>
+          <label for="Masculino">
+            <input
+              type="radio"
+              id="Masculino"
+              name="generoDependente"
+              value="Masculino"
+              th:field="*{generoDependente}"
+              required
+            />
+            Masculino
+          </label>
+          <label for="Feminino">
+            <input
+              type="radio"
+              id="Feminino"
+              name="generoDependente"
+              value="Feminino"
+              th:field="*{generoDependente}"
+              required
+            />
+            Feminino
+          </label>
+          <label for="Não Informado">
+            <input
+              type="radio"
+              id="Não Informado"
+              name="generoDependente"
+              value="Não Informado"
+              th:field="*{generoDependente}"
+              required
+              checked
+            />
+            Não informar
+          </label>
+        </fieldset>
+
+        <div class="grid">
+          <input type="submit" value="Adicionar!" />
+          <input type="reset" value="Limpar" />
+        </div>
+        <label>* Campo obrigatório</label>
+      </form>
     </div>
   </body>
 </html>
