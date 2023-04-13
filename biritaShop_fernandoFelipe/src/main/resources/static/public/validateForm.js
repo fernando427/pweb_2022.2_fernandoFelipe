@@ -30,3 +30,16 @@ form.addEventListener('submit', function(event) {
     alert('O valor deve ser entre 0.01 e 9999999999.99');
   }
 });
+
+form.addEventListener('submit', function(event) {
+  const selectElement = document.getElementById("addSelect");
+
+  if (selectElement.value === "") {
+    event.preventDefault();
+    alert("Por favor, selecione uma opção. Caso não tenha, adicione um cliente.");
+  }
+
+});
+
+var selectElement = document.getElementById("editarSelect");
+selectElement.style.display = "none";

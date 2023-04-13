@@ -85,14 +85,13 @@
       >
         <h1>Formulário para editar dependentes:</h1>
         <div class="form-group">
-          <label for="dropdown">Selecione um cliente</label>
-          <select id="dropdown" name="cliente" class="form-control">
+          <select id="editarSelect" name="cliente" class="form-control">
             <option value="">--Select--</option>
             <option
               th:each="umCliente: ${todosOsClientes}"
               th:value="${umCliente.id}"
               th:text="${umCliente.nomeCompleto}"
-              th:selected="${umCliente.id} == ${clienteid}"
+              th:selected="${umCliente.id} == ${dependente.cliente.id}"
             ></option>
           </select>
         </div>
@@ -165,5 +164,6 @@
         <label>* Campo obrigatório</label>
       </form>
     </div>
+    <script src="/public/validateForm.js"></script>
   </body>
 </html>

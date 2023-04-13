@@ -86,7 +86,7 @@
       >
         <div class="form-group">
           <label for="dropdown">Selecione um cliente</label>
-          <select id="dropdown" name="cliente" class="form-control">
+          <select id="addSelect" name="cliente" class="form-control">
             <option value="">--Select--</option>
             <option
               th:each="umCliente: ${todosOsClientes}"
@@ -164,5 +164,6 @@
         <label>* Campo obrigatório</label>
       </form>
     </div>
+    <script src="/public/validateForm.js"></script>
   </body>
 </html>
