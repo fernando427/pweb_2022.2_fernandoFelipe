@@ -1,7 +1,6 @@
 package br.com.fernando.biritashop.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.fernando.biritashop.model.Dependente;
@@ -32,18 +32,13 @@ public class DependenteController {
     }
 
     @GetMapping("/listarDependente")
-    public ModelAndView listarDependente() {
+    public ModelAndView listarDependente(@RequestParam(value = "clienteid", required = false) Long clienteid) {
         List<Cliente> todosOsClientes = this.clienteRepo.findAll();
+        List<Dependente> todosOsDependentes = this.dependenteRepo.findByCliente_Id(clienteid);
         ModelAndView modelAndView = new ModelAndView("/dependente/listarDependente");
         modelAndView.addObject("todosOsClientes", todosOsClientes);
-        return modelAndView;
-    }
-
-    @GetMapping("/listarDependente/{id}")
-    public ModelAndView listarDependentePorId(@PathVariable("clienteid") Long clienteid) {
-        Optional<Dependente> todosOsDependentes = this.dependenteRepo.findById(clienteid);
-        ModelAndView modelAndView = new ModelAndView("/dependente/listarDependente");
         modelAndView.addObject("todosOsDependentes", todosOsDependentes);
+        modelAndView.addObject("clienteid", clienteid);
         return modelAndView;
     }
 
@@ -74,7 +69,9 @@ public class DependenteController {
     public ModelAndView formularioEditarDependentes(@PathVariable("id") long id) {
         Dependente aEditar = this.dependenteRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("ID inválido=" + id));
+        List<Cliente> todosOsClientes = this.clienteRepo.findAll();
         ModelAndView modelAndView = new ModelAndView("/dependente/editarDependente");
+        modelAndView.addObject("todosOsClientes", todosOsClientes);
         modelAndView.addObject(aEditar);
         return modelAndView;
     }

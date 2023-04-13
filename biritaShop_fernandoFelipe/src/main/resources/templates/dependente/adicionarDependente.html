@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black">Dependente</button>
+        <button class="w3-button w3-black w3-pale-green">Dependente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a
             href="/dependente/adicionarDependente"
@@ -86,7 +86,7 @@
       >
         <div class="form-group">
           <label for="dropdown">Selecione um cliente</label>
-          <select id="dropdown" name="umCliente" class="form-control">
+          <select id="dropdown" name="cliente" class="form-control">
             <option value="">--Select--</option>
             <option
               th:each="umCliente: ${todosOsClientes}"

@@ -26,7 +26,7 @@ public class ClienteController {
 
     @GetMapping("/listarCliente")
     public ModelAndView listarCliente() {
-        List<Cliente> todosOsClientes = clienteRepo.findAll();
+        List<Cliente> todosOsClientes = this.clienteRepo.findAll();
         ModelAndView modelAndView = new ModelAndView("/cliente/listarCliente");
         modelAndView.addObject("todosOsClientes", todosOsClientes);
         return modelAndView;

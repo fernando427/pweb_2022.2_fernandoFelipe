@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black">Dependente</button>
+        <button class="w3-button w3-black w3-pale-green">Dependente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a
             href="/dependente/adicionarDependente"
@@ -79,15 +79,20 @@
 
     <div class="pad">
       <h1 align="middle"><b>Seleção de clientes</b></h1>
-      <form th:object="${cliente}" method="GET">
+      <form
+        th:action="@{/dependente/listarDependente}"
+        th:object="${cliente}"
+        method="GET"
+      >
         <div class="form-group">
           <label for="dropdown">Selecione um cliente</label>
-          <select id="dropdown" name="option" class="form-control">
+          <select id="dropdown" name="clienteid" class="form-control">
             <option value="">--Select--</option>
             <option
               th:each="umCliente: ${todosOsClientes}"
               th:value="${umCliente.id}"
               th:text="${umCliente.nomeCompleto}"
+              th:selected="${umCliente.id} == ${clienteid}"
             ></option>
           </select>
         </div>
@@ -116,7 +121,7 @@
             <td th:text="${umDependente.nomeDependente}"></td>
             <td th:text="${umDependente.generoDependente}"></td>
             <td
-              th:text="${#temporals.format(umaDependente.dataNascimento, 'dd/MM/yyyy')}"
+              th:text="${#temporals.format(umDependente.dataNascimento, 'dd/MM/yyyy')}"
             ></td>
             <td>
               <a th:href="@{editar/{id}(id=${umDependente.id})}">Editar</a>

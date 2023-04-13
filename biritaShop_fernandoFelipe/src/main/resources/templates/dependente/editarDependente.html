@@ -23,7 +23,7 @@
     <div class="w3-bar w3-black w3-xlarge">
       <a href="/" class="w3-bar-item w3-button w3-mobile">BiritaShop</a>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black w3-pale-green">Cliente</button>
+        <button class="w3-button w3-black">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
             >Adicionar Cliente</a
@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black">Dependente</button>
+        <button class="w3-button w3-black w3-pale-green">Dependente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a
             href="/dependente/adicionarDependente"
@@ -80,63 +80,42 @@
     <div class="pad">
       <form
         method="POST"
-        th:action="@{/cliente/editar/{id}(id=${cliente.id})}"
-        th:object="${cliente}"
+        th:action="@{/dependente/editar/{id}(id=${dependente.id})}"
+        th:object="${dependente}"
       >
-        <h1>Formulário para editar clientes:</h1>
+        <h1>Formulário para editar dependentes:</h1>
+        <div class="form-group">
+          <label for="dropdown">Selecione um cliente</label>
+          <select id="dropdown" name="cliente" class="form-control">
+            <option value="">--Select--</option>
+            <option
+              th:each="umCliente: ${todosOsClientes}"
+              th:value="${umCliente.id}"
+              th:text="${umCliente.nomeCompleto}"
+              th:selected="${umCliente.id} == ${clienteid}"
+            ></option>
+          </select>
+        </div>
         <div class="grid">
           <label for="nome">
             Seu nome*:
             <input
               type="text"
               id="nome"
-              name="nome"
+              name="nomeDependente"
               placeholder="Nome Completo"
-              th:field="*{nomeCompleto}"
+              th:field="*{nomeDependente}"
               required
             />
           </label>
-          <label for="email">
-            e-Mail*:
+          <label for="dataNascimento">
+            Data de Nascimento*:
             <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="nome@dominio.com"
-              th:field="*{email}"
-              required
-            />
-          </label>
-          <label for="cidade">
-            Cidade*:
-            <input
-              type="text"
-              id="cidade"
-              name="cidade"
-              placeholder="Cidade"
-              th:field="*{cidade}"
-              required
-            />
-          </label>
-          <label for="cep">
-            CEP*:
-            <input
-              type="text"
-              id="cep"
-              name="cep"
-              placeholder="CEP"
-              th:field="*{cep}"
-              required
-            />
-          </label>
-          <label for="telefone">
-            Telefone*:
-            <input
-              type="text"
-              id="telefone"
-              name="telefone"
-              placeholder="Telefone"
-              th:field="*{telefone}"
+              type="date"
+              id="dataNascimento"
+              name="dataNascimento"
+              placeholder="dd/mm/aaaa"
+              th:field="*{dataNascimento}"
               required
             />
           </label>
@@ -147,9 +126,9 @@
             <input
               type="radio"
               id="Masculino"
-              name="genero"
+              name="generoDependente"
               value="Masculino"
-              th:field="*{genero}"
+              th:field="*{generoDependente}"
               required
             />
             Masculino
@@ -158,9 +137,9 @@
             <input
               type="radio"
               id="Feminino"
-              name="genero"
+              name="generoDependente"
               value="Feminino"
-              th:field="*{genero}"
+              th:field="*{generoDependente}"
               required
             />
             Feminino
@@ -169,9 +148,9 @@
             <input
               type="radio"
               id="Não Informado"
-              name="genero"
+              name="generoDependente"
               value="Não Informado"
-              th:field="*{genero}"
+              th:field="*{generoDependente}"
               required
               checked
             />
