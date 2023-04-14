@@ -2,32 +2,32 @@ const form = document.querySelector('form');
 
 //Validações de formulários com preço
 form.addEventListener('submit', function(event) {
-  const priceField = document.querySelector('#precoCompra');
-  const price = parseFloat(priceField.value);
+  const precoCompra = document.querySelector('#precoCompra');
+  const precoC = parseFloat(precoCompra.value);
 
-  if (isNaN(price) || price < 0.01 || price > 9999999999.99) {
+  if (isNaN(precoC) || precoC < 0.01 || precoC > 9999999999.99) {
     event.preventDefault();
-    alert('O valor deve ser entre 0.01 e 9999999999.99');
+    alert('O valor da compra deve ser entre 0.01 e 9999999999.99');
   }
 });
 
 form.addEventListener('submit', function(event) {
-  const priceField = document.querySelector('#precoVenda');
-  const price = parseFloat(priceField.value);
+  const precoVenda = document.querySelector('#precoVenda');
+  const precoV = parseFloat(precoVenda.value);
 
-  if (isNaN(price) || price < 0.01 || price > 9999999999.99) {
+  if (isNaN(precoV) || precoV < 0.01 || precoV > 9999999999.99) {
     event.preventDefault();
-    alert('O valor deve ser entre 0.01 e 9999999999.99');
+    alert('O valor da venda deve ser entre 0.01 e 9999999999.99');
   }
 });
 
 form.addEventListener('submit', function(event) {
-  const priceField = document.querySelector('#volume');
-  const price = parseFloat(priceField.value);
+  const valorVolume = document.querySelector('#volume');
+  const valorV = parseFloat(valorVolume.value);
 
-  if (isNaN(price) || price < 0.01 || price > 9999999999.99) {
+  if (isNaN(valorV) || valorV < 0.01 || valorV > 9999999999.99) {
     event.preventDefault();
-    alert('O valor deve ser entre 0.01 e 9999999999.99');
+    alert('O valor do volume deve ser entre 0.01 e 9999999999.99');
   }
 });
 
