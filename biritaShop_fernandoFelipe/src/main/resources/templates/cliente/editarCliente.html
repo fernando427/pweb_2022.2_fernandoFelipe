@@ -126,19 +126,22 @@
             <input
               type="text"
               id="cep"
+              onkeydown="cepNumberFormatter()"
               name="cep"
-              placeholder="CEP"
+              placeholder="xxxxx-xxx"
               th:field="*{cep}"
               required
             />
           </label>
           <label for="telefone">
-            Telefone*:
+            Telefone (celular)*:
             <input
               type="text"
               id="telefone"
+              onkeydown="phoneNumberFormatter()"
               name="telefone"
-              placeholder="Telefone"
+              value="telefone"
+              placeholder="(xx) xxxxx-xxxx"
               th:field="*{telefone}"
               required
             />
@@ -189,5 +192,6 @@
         <label>* Campo obrigatório</label>
       </form>
     </div>
+    <script src="/public/validateForm.js"></script>
   </body>
 </html>

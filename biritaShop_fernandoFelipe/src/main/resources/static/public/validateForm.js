@@ -51,5 +51,58 @@ form.addEventListener('submit', function(event) {
 
 });
 
+form.addEventListener('submit', function(event) {
+
+  const regexTelefone = /^\(\d{2}\) \d{5}-\d{4}$/;
+  const regexCep = /^[0-9]{5}-[0-9]{3}$/;
+  const testTelefone = document.getElementById("telefone").value;
+  const testCep = document.getElementById("cep").value;
+
+  if (!regexTelefone.test(testTelefone)) {
+    event.preventDefault();
+    alert("Por favor, insira apenas números válidos no telefone.");
+  }
+
+  if (!regexCep.test(testCep)) {
+    event.preventDefault();
+    alert("Por favor, insira apenas números válidos no CEP.");
+  }
+
+});
+
+
+function formatPhoneNumber(value) {
+  if (!value) return value;
+  const phoneNumber = value.replace(/[^\d]/g, "");
+  const phoneNumberLength = phoneNumber.length;
+  if (phoneNumberLength < 3) return phoneNumber;
+  if (phoneNumberLength < 7) {
+    return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(2)}`;
+  }
+  return `(${phoneNumber.slice(0, 2)}) ${phoneNumber.slice(
+    2,
+    7
+  )}-${phoneNumber.slice(7, 10)}`;
+}
+
+function phoneNumberFormatter() {
+  const inputField = document.getElementById("telefone");
+  const formattedInputValue = formatPhoneNumber(inputField.value);
+  inputField.value = formattedInputValue;
+}
+
+function formatCepNumber(value) {
+  if (!value) return value;
+  const cepNumber = value.replace(/[^\d]/g, "");
+  return `${cepNumber.slice(0,5)}-${cepNumber.slice(5, 7)}`;
+}
+
+function cepNumberFormatter() {
+  const inputField = document.getElementById("cep");
+  const formattedInputValue = formatCepNumber(inputField.value);
+  inputField.value = formattedInputValue;
+}
+
 var selectElement = document.getElementById("editarSelect");
 selectElement.style.display = "none";
+
