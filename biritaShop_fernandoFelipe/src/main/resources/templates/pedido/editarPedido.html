@@ -23,7 +23,7 @@
     <div class="w3-bar w3-black w3-xlarge">
       <a href="/" class="w3-bar-item w3-button w3-mobile">BiritaShop</a>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black w3-pale-green">Cliente</button>
+        <button class="w3-button w3-black">Cliente</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
             >Adicionar Cliente</a
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black">Pedido</button>
+        <button class="w3-button w3-black w3-pale-green">Pedido</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a href="/pedido/adicionarPedido" class="w3-bar-item w3-button"
             >Adicionar Pedido</a
@@ -83,107 +83,76 @@
     <div class="pad">
       <form
         method="POST"
-        th:action="@{/cliente/adicionarCliente}"
-        th:object="${cliente}"
+        th:action="@{/pedido/editar/{id}(id=${pedido.id})}"
+        th:object="${pedido}"
       >
-        <h1>Formulário para adicionar clientes:</h1>
+        <h1>Formulário para editar dependentes:</h1>
+        <div class="form-group">
+          <select id="editarSelect" name="cliente" class="form-control">
+            <option value="">--Select--</option>
+            <option
+              th:each="umCliente: ${todosOsClientes}"
+              th:value="${umCliente.id}"
+              th:text="${umCliente.nomeCompleto}"
+              th:selected="${umCliente.id} == ${pedido.cliente.id}"
+            ></option>
+          </select>
+        </div>
         <div class="grid">
-          <label for="nomeCompleto">
-            Seu nome*:
+          <label for="quantidade">
+            Selecione a quantidade:
             <input
-              type="text"
-              id="nomeCompleto"
-              name="nomeCompleto"
-              placeholder="Nome Completo"
-              th:field="*{nomeCompleto}"
-              required
-            />
-          </label>
-          <label for="email">
-            e-Mail*:
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="nome@dominio.com"
-              th:field="*{email}"
-              required
-            />
-          </label>
-          <label for="cidade">
-            Cidade*:
-            <input
-              type="text"
-              id="cidade"
-              name="cidade"
-              placeholder="Cidade"
-              th:field="*{cidade}"
-              required
-            />
-          </label>
-          <label for="cep">
-            CEP*:
-            <input
-              type="text"
-              id="cep"
-              name="cep"
-              placeholder="CEP"
-              th:field="*{cep}"
-              required
-            />
-          </label>
-          <label for="telefone">
-            Telefone*:
-            <input
-              type="text"
-              id="telefone"
-              name="telefone"
-              placeholder="Telefone"
-              th:field="*{telefone}"
+              type="number"
+              step="1"
+              min="1"
+              id="quantidade"
+              name="quantidade"
+              th:value="${quantidade}"
+              th:field="*{quantidade}"
               required
             />
           </label>
         </div>
         <fieldset>
-          <legend>Gênero*</legend>
-          <label for="Masculino">
+          <legend>Forma de pagamento*</legend>
+          <label for="Dinheiro">
             <input
               type="radio"
-              id="Masculino"
-              name="genero"
-              value="Masculino"
-              th:field="*{genero}"
+              id="Dinheiro"
+              name="pagamento"
+              value="Dinheiro"
+              th:field="*{pagamento}"
               required
             />
-            Masculino
+            Dinheiro
           </label>
-          <label for="Feminino">
+          <label for="CartaoDeCredito">
             <input
               type="radio"
-              id="Feminino"
-              name="genero"
-              value="Feminino"
-              th:field="*{genero}"
+              id="CartaoDeCredito"
+              name="pagamento"
+              value="CartaoDeCredito"
+              th:field="*{pagamento}"
               required
             />
-            Feminino
+            Cartão de Crédito
           </label>
-          <label for="Não Informado">
+          <label for="ChavePix">
             <input
               type="radio"
-              id="Não Informado"
-              name="genero"
-              value="Não Informado"
-              th:field="*{genero}"
+              id="ChavePix"
+              name="pagamento"
+              value="ChavePix"
+              th:field="*{pagamento}"
               required
               checked
             />
-            Não informar
+            Chave Pix
           </label>
         </fieldset>
 
         <div class="grid">
-          <input type="submit" value="Adicionar!" />
+          <input type="submit" value="Editar!" />
           <input type="reset" value="Limpar" />
         </div>
         <label>* Campo obrigatório</label>

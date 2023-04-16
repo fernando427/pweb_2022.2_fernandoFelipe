@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta codigoSecreto="1243118102" />
+    <title>BiritaShop - by Fernando Felipe</title>
+    <link rel="shortcut icon" th:href="@{/assets/favicon.ico}" />
+
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
+
+    <style>
+      .pad {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="w3-bar w3-black w3-xlarge">
+      <a href="/" class="w3-bar-item w3-button w3-mobile">BiritaShop</a>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Cliente</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="/cliente/adicionarCliente" class="w3-bar-item w3-button"
+            >Adicionar Cliente</a
+          >
+          <a href="/cliente/listarCliente" class="w3-bar-item w3-button"
+            >Listar Cliente</a
+          >
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Dependente</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a
+            href="/dependente/adicionarDependente"
+            class="w3-bar-item w3-button"
+            >Adicionar Dependente</a
+          >
+          <a href="/dependente/listarDependente" class="w3-bar-item w3-button"
+            >Listar Dependente</a
+          >
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black w3-pale-green">Pedido</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="/pedido/adicionarPedido" class="w3-bar-item w3-button"
+            >Adicionar Pedido</a
+          >
+          <a href="/pedido/listarPedido" class="w3-bar-item w3-button">Listar Pedido</a>
+        </div>
+      </div>
+      <div class="w3-dropdown-hover">
+        <button class="w3-button w3-black">Produto</button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+          <a href="/produto/adicionarProduto" class="w3-bar-item w3-button"
+            >Adicionar Produto</a
+          >
+          <a href="/produto/listarProduto" class="w3-bar-item w3-button"
+            >Listar Produto</a
+          >
+        </div>
+      </div>
+      <a
+        href="/public/sobre.html"
+        class="w3-bar-item w3-button w3-mobile w3-right"
+        >Sobre o site</a
+      >
+      <a
+        href="/public/contato.html"
+        class="w3-bar-item w3-button w3-mobile w3-right"
+        >Contato</a
+      >
+    </div>
+
+    <div class="pad">
+      <div class="pad">
+        <h1>Formulário para adicionar produtos:</h1>
+        <form
+          method="POST"
+          th:action="@{/pedido/adicionarPedido}"
+          th:object="${pedido}"
+        >
+          <div class="form-group">
+            <label for="dropdown">Selecione um cliente</label>
+            <select id="addSelect" name="cliente" class="form-control">
+              <option value="">--Select--</option>
+              <option
+                th:each="umCliente: ${todosOsClientes}"
+                th:value="${umCliente.id}"
+                th:text="${umCliente.nomeCompleto}"
+              ></option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dropdown">Selecione um produto</label>
+            <select id="addSelectProduto" name="produto" class="form-control" onchange="handleSelectChange()">
+              <option value="">--Select--</option>
+              <option
+                th:each="umProduto: ${todosOsProdutos}"
+                th:value="${umProduto.id}"
+                th:text="${umProduto.nomeProduto}"
+                th:attr="nomeP=${umProduto.nomeProduto}"
+              ></option>
+            </select>
+            <label for="quantidade">
+              Selecione a quantidade:
+              <input
+                type="number"
+                step="1"
+                min="1"
+                id="quantidade"
+                name="quantidade"
+                th:value="${quantidade}"
+                th:field="*{quantidade}"
+                required
+              />
+            </label>
+          </div>
+          <fieldset>
+            <legend>Forma de pagamento*</legend>
+            <label for="Dinheiro">
+              <input
+                type="radio"
+                id="Dinheiro"
+                name="pagamento"
+                value="Dinheiro"
+                th:field="*{pagamento}"
+                required
+              />
+              Dinheiro
+            </label>
+            <label for="CartaoDeCredito">
+              <input
+                type="radio"
+                id="CartaoDeCredito"
+                name="pagamento"
+                value="CartaoDeCredito"
+                th:field="*{pagamento}"
+                required
+              />
+              Cartão de Crédito
+            </label>
+            <label for="ChavePix">
+              <input
+                type="radio"
+                id="ChavePix"
+                name="pagamento"
+                value="ChavePix"
+                th:field="*{pagamento}"
+                required
+                checked
+              />
+              Chave Pix
+            </label>
+          </fieldset>
+  
+          <div class="grid">
+            <input type="submit" value="Adicionar!" />
+            <input type="reset" value="Limpar" />
+          </div>
+          <label>* Campo obrigatório</label>
+        </form>
+      </div>
+      </form>
+    </div>
+    <script src="/public/validateForm.js">
+      function handleSelectChange() {
+        var selectElement = document.getElementById("addSelectProduto");
+        var nomeProduto = selectElement.options[selectElement.selectedIndex].getAttribute("nomeP");
+        console.log(nomeProduto); // imprime o valor do nome do produto selecionado
+        
+        // armazena o valor do nome do produto em uma variável JavaScript
+        var nomeProdutoPedido = nomeProduto;
+        
+        // define o valor da variável no contexto do Thymeleaf, para que possa ser exibida na página
+        var nomeProdutoInput = document.getElementById("nomeProdutoPedido");
+        nomeProdutoInput.value = nomeProdutoPedido;
+      }
+    </script>
+  </body>
+</html>

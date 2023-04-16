@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta codigoSecreto="1243118102" />
-    <title>PWeb - by Fernando Felipe</title>
-    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <title>BiritaShop - by Fernando Felipe</title>
+    <link rel="shortcut icon" th:href="@{/assets/favicon.icon}" />
 
-    <link rel="stylesheet" href="/assets/w3.css" />
-    <link rel="stylesheet" href="/assets/pico.min.css" />
+    <link rel="stylesheet" th:href="@{/assets/w3.css}" />
+    <link rel="stylesheet" th:href="@{/assets/pico.min.css}" />
 
     <style>
       .pad {
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="w3-dropdown-hover">
-        <button class="w3-button w3-black">Pedido</button>
+        <button class="w3-button w3-black w3-pale-green">Pedido</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
           <a href="/pedido/adicionarPedido" class="w3-bar-item w3-button"
             >Adicionar Pedido</a
@@ -75,19 +75,64 @@
       >
       <a
         href="/public/contato.html"
-        class="w3-bar-item w3-button w3-mobile w3-right w3-pale-green"
+        class="w3-bar-item w3-button w3-mobile w3-right"
         >Contato</a
       >
     </div>
 
     <div class="pad">
-      <h1>
-        <a
-          href="mailto:fernando.silva17452@alunos.ufersa.edu.br"
-          style="color: black"
-          >Mande um e-Mail para mim!</a
-        >
-      </h1>
+      <h1 align="middle">Seleção de clientes</h1>
+      <form
+        th:action="@{/pedido/listarPedido}"
+        th:object="${cliente}"
+        method="GET"
+      >
+        <div class="form-group">
+          <label for="dropdown">Selecione um cliente</label>
+          <select id="dropdown" name="clienteid" class="form-control">
+            <option value="">--Select--</option>
+            <option
+              th:each="umCliente: ${todosOsClientes}"
+              th:value="${umCliente.id}"
+              th:text="${umCliente.nomeCompleto}"
+              th:selected="${umCliente.id} == ${clienteid}"
+            ></option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar pedidos</button>
+      </form>
+    </div>
+
+    <div class="pad">
+      <h1 align="middle">Lista de pedidos</h1>
+      <table role="grid">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Pagamento</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Data de Geração</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Remover</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="umPedido: ${todosOsPedidos}">
+            <td th:text="${umPedido.id}"></td>
+            <td th:text="${umPedido.pagamento}"></td>
+            <td th:text="${umPedido.quantidade}"></td>
+            <td
+              th:text="${#dates.format(umPedido.dataPedido, 'dd/MM/yyyy')}"
+            ></td>
+            <td>
+              <a th:href="@{editar/{id}(id=${umPedido.id})}">Editar</a>
+            </td>
+            <td>
+              <a th:href="@{remover/{id}(id=${umPedido.id})}">Remover</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>

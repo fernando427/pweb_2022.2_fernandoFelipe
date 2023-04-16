@@ -49,9 +49,12 @@
       <div class="w3-dropdown-hover">
         <button class="w3-button w3-black">Pedido</button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
-          <a href="#" class="w3-bar-item w3-button">Adicionar Pedido</a>
-          <a href="#" class="w3-bar-item w3-button">Editar Pedido</a>
-          <a href="#" class="w3-bar-item w3-button">Listar Pedido</a>
+          <a href="/pedido/adicionarPedido" class="w3-bar-item w3-button"
+            >Adicionar Pedido</a
+          >
+          <a href="/pedido/listarPedido" class="w3-bar-item w3-button"
+            >Listar Pedido</a
+          >
         </div>
       </div>
       <div class="w3-dropdown-hover">
@@ -78,7 +81,7 @@
     </div>
 
     <div class="pad">
-      <h1 align="middle">Adicionar dependente</h1>
+      <h1>Formulário para adicionar dependentes:</h1>
       <form
         method="POST"
         th:action="@{/dependente/adicionarDependente}"

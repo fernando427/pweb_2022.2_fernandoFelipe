@@ -36,7 +36,17 @@ form.addEventListener('submit', function(event) {
 
   if (selectElement.value === "") {
     event.preventDefault();
-    alert("Por favor, selecione uma opção. Caso não tenha, adicione um cliente.");
+    alert("Por favor, selecione uma opção de cliente. Caso não tenha, adicione um cliente.");
+  }
+
+});
+
+form.addEventListener('submit', function(event) {
+  const selectElement = document.getElementById("addSelectProduto");
+
+  if (selectElement.value === "") {
+    event.preventDefault();
+    alert("Por favor, selecione uma opção de produto.Caso não tenha, adicione um produto.");
   }
 
 });
