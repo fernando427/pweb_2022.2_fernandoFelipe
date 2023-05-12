@@ -16,6 +16,10 @@
         padding-left: 20px;
         padding-right: 20px;
       }
+
+      .meu-campo {
+        cursor: default;
+      }
     </style>
   </head>
 
@@ -82,6 +86,7 @@
 
     <div class="pad">
       <form
+        id="address-form"
         method="POST"
         th:action="@{/cliente/adicionarCliente}"
         th:object="${cliente}"
@@ -116,9 +121,10 @@
               type="text"
               id="cidade"
               name="cidade"
-              placeholder="Cidade"
+              placeholder="Cidade (digite o CEP)"
               th:field="*{cidade}"
-              required
+              readonly
+              class="meu-campo"
             />
           </label>
           <label for="cep">
@@ -130,6 +136,8 @@
               name="cep"
               placeholder="xxxxx-xxx"
               th:field="*{cep}"
+              minlength="9"
+              maxlength="9"
               required
             />
           </label>

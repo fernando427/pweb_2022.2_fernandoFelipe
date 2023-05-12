@@ -91,16 +91,55 @@ function phoneNumberFormatter() {
   inputField.value = formattedInputValue;
 }
 
-function formatCepNumber(value) {
-  if (!value) return value;
-  const cepNumber = value.replace(/[^\d]/g, "");
-  return `${cepNumber.slice(0,5)}-${cepNumber.slice(5, 7)}`;
-}
+const addresInput = document.querySelector("#cep");
+addresInput.addEventListener("keypress", (e) => {
+  const onlyNumber = /[0-9]/;
+  const key = String.fromCharCode(e.keyCode);
 
-function cepNumberFormatter() {
+  if(!onlyNumber.test(key)) {
+    e.preventDefault();
+    return;
+  }
+
   const inputField = document.getElementById("cep");
   const formattedInputValue = formatCepNumber(inputField.value);
   inputField.value = formattedInputValue;
+});
+
+addresInput.addEventListener("keyup", (e) => {
+  const inputTest = e.target.value;
+
+  if(inputTest.length === 9) {
+    getAddress(inputTest);
+  }
+});
+
+const getAddress = async (cep) => {
+  const addressForm = document.querySelector("#address-form");
+  const cityForm = document.getElementById("cidade")
+
+  const apiUrl = `https://viacep.com.br/ws/${cep}/json/`
+
+  const response = await fetch(apiUrl);
+
+  const data = await response.json();
+
+  console.log(data);
+
+  if(data.erro === true) {
+    addressForm.reset();
+    alert("CEP inválido, digite um CEP válido!");
+    return;
+  }
+
+  cityForm.value = data.localidade;
+
+}
+
+function formatCepNumber(value) {
+  if (!value) return value;
+  const cepNumber = value.replace(/[^\d]/g, "");
+  return `${cepNumber.slice(0,5)}-${cepNumber.slice(5,7)}`;
 }
 
 var selectElement = document.getElementById("editarSelect");
