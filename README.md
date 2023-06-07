@@ -3,7 +3,7 @@
 Turma de programação web 2022.2  
 - [x] Unidade 1  
 - [x] Unidade 2  
-- [ ] Unidade 3  
+- [x] Unidade 3  
 
 # Users escolhidos para a unidade 3:
 
